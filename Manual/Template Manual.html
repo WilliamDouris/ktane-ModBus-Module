@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>Module Name — Keep Talking and Nobody Explodes Module</title>
+        <title>ModBus Module — Keep Talking and Nobody Explodes Module</title>
         <meta name="viewport" content="initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -45,141 +45,169 @@
     <body>
         <div id="ManualContent">
             <div class="section">
-                <div class="page page-bg-01">
-                    <div class="page-header">
-                        <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
-                        <span class="page-header-section-title">Module Name</span>
-                    </div>
-                    <div class="page-content">
-                        <img src="img/Component/Module Name.svg" class="diagram">
-                        <h2>On the Subject of Module Name</h2>
-                        <p class="flavour-text">Your flavor text should go here.</p>
-                        
-                        <p>Here are templates for commonly used manual features. Make sure to always use closing tags (the ones with a <code>/</code> in them).</p>
-
-                        <h3>Bullet Points (Unordered Lists)</h3>
-                        <ul>
-                            <li>Bullet points should use the <code>&lt;ul&gt;&lt;/ul&gt;</code> and <code>&lt;li&gt;&lt;/li&gt;</code> tags.</li>
-                            <li>You can even have nested bullet points:
-                                <ul>
-                                    <li>Indented</li>
-                                    <li>Bullet Points</li>
-                                </ul>
-                            </li>
-                            <li>Or numbered lists:
-                                <ol>
-                                    <li>Indented</li>
-                                    <li>Bullet Points</li>
-                                </ol>
-                            </li>
-                        </ul>
-                        
-                        <h3>Numbered Lists (Ordered Lists)</h3>
-                        <ol>
-                            <li>Numbered lists should use the <code>&lt;ol&gt;&lt;/ol&gt;</code> and <code>&lt;li&gt;&lt;/li&gt;</code> tags.</li>
-                            <li>Nested lists work just like unordered lists (see above).</li>
-                        </ol>
-
-                        <h3>Text</h3>
-                        <p>Use paragraph tags (<code>&lt;p&gt;&lt;/p&gt;</code>) for text blocks. In addition, for text formatting, use:</p>
-                        <ul>
-                            <li>
-                                <strong>Bold</strong>: <code>&lt;strong&gt;&lt;/strong&gt;</code> (HTML) or <code>font-weight: bold;</code> (CSS).
-                                <ul><li>Bold in table headers should be achieved through the use of the <code>&lt;th&gt;&lt;/th&gt;</code> tag.</li></ul>
-                            </li>
-                            <li><em>Underline</em>: <code>&lt;em&gt;&lt;/em&gt;</code> (HTML) or <code>text-decoration: underline;</code> (CSS).</li>
-                            <li>Line<br />Break: <code>&lt;br /&gt;</code> (HTML)</li>
-                        </ul>
-                        <p>For the most part, HTML versions of bolding and underlining is recommended. Note that italics are not used in vanilla manuals besides flavor text and references to appendices, and therefore is not included above. Also, here are some sample headings:</p>
-                        <h3>Example Big Heading</h3>
-                        <h4>Example Small Heading</h4>
-                    </div>
-                   <div class="page-footer relative-footer">Page 1 of 2</div>
-                </div>
                 <div class="page page-bg-02">
                     <div class="page-header">
                         <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
-                        <span class="page-header-section-title">Module Name</span>
+                        <span class="page-header-section-title">ModBus Module</span>
                     </div>
                     <div class="page-content">
-                        <h3>Example Tables</h3>
-                        <table>
-                            <tr>
-                                <th>Part of table</th>
-                                <th>How to make</th>
-                            </tr>
-                            <tr>
-                                <th>Rows and Columns</th>
-                                <td>
-                                    Use <code>&lt;tr&gt;&lt;/tr&gt;</code> for rows. 
-                                    Use <code>&lt;th&gt;&lt;/th&gt;</code> or <code>&lt;td&gt;&lt;/td&gt;</code> for columns within rows (see below).
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Headings (left column and top row, in most cases)</th>
-                                <td>Use <code>&lt;th&gt;&lt;/th&gt;</code></td>
-                            </tr>
-                            <tr>
-                                <th>Cells</th>
-                                <td>Use <code>&lt;td&gt;&lt;/td&gt;</code></td>
-                            </tr>
-                            <tr>
-                                <th rowspan="2">Merged Cells</th>
-                                <td>Use <code>rowspan="_"</code> for merging cells vertically.</td>
-                            </tr>
-                            <tr>
-                                <td>Use <code>colspan="_"</code> for merging cells horizontally.</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Note that merged cells created in other rows are skipped in affected rows (see HTML for above row).</td>
-                            </tr>
-                        </table>
-                        <p>If the table contents are not wide enough, tables are centered by default due to the <code>table</code> rule of the first <code>&lt;style&gt;</code> block (see above code).</p>
-                        <table class="center">
-                            <tr>
-                                <th>Cell 1</th>
-                                <td>Cell 2</td>
-                            </tr>
-                            <tr>
-                                <th>Cell 3</th>
-                                <td>Cell 4</td>
-                            </tr>
-                        </table>
-
-                        <h3>Images</h3>
-                        <p>Use the <code>&lt;img src="_" /&gt;</code> tag for images. Make sure to put your images into the <code class="notcode">/img/[Module Name]/</code> folder. Adjust the width with CSS, using <code>width: _%;</code> (recommended) or <code>width: _px;</code>. Example:</p>
-                        <img src="img/Example Image.png" class="center example-image" />
-
-                        <h3>Making the PDF</h3>
-                        <p>To make a PDF version of your manual, open the HTML file in Google Chrome and open the "Print" dialog (Usually <kbd>CTRL</kbd>+<kbd>P</kbd>) and choose "Save as PDF" as the destination.</p>
+                        <img src="img/Component/Module Name.svg" class="diagram">
+                        <h2>On the Subject of ModBus </h2>
+                        <p class="flavour-text">"I got this, I'm a professional" was him last word.</p>
+                        
+                        <p>The ModBus is a serial communications protocol originally published by Modicon in 1979, for use with it's PLCs (Programmable logic controllers). </p>
+						<p class="flavour-text">A little of History is good, right ? </p>
+						
+						<br>
+						
+						<p>It's now commonly available means of connecting industrial electronic devices...and can be use to make some bomb.<br>
+						To defuse the module, it's simple, you only need to send the right frame.<br>
+						Don't send anything before finishing writing the frame.</p>
+						
+						<p class="flavour-text"> You just have to follow the instructions. As simple as cooking a turkey ! </p>
+						
+						<br>
+						
+                        <h2>ModBus Protocol</h2>
+						<p class="flavour-text"> "READ THIS SECTION ! please."</p>
+						<p>Like we said before, you need to follow a strict protocol. We are lucky, bomber never use CRC (Cyclic redundancy check, "Error check").<br>
+						Also, We know, they only use the RTU frame format describe below</p>
+						
+                        <img src="img/frameModBus.png" width="500" />
+						<p class="flavour-text"> Like we said before, we don't need calculate the CRC (lucky you). <br>
+						PS : Adress here correspond to the slave adress like the adress of the timer.</p>
+						<p> 16 bits word (2 bytes) are send in "Big endian" (Must Signifiant Bit First).<br>
+						i.e. : You have to send (42)<SUB>10</SUB> = (21)<SUB>HEX</SUB>, you need to send "2" then "1".</p>
+						
+						
+						<h3> Adress </h3>
+						<p class="flavour-text"> "Where I have to send the defuse code ?"</p>
+						<p> For fill this, you need to watch the first number (or letter) of the serial code of the bomb.<br>
+						Convert this (they are all in ASCII) in hexademal number (See Annex ASCII Tab), this is the adress (yay !).<p>
+						<p class="flavour-text"> Don't use the decimal numbers ! </p>
                     </div>
-                   <div class="page-footer relative-footer">Page 2 of 2</div>
+                   <div class="page-footer relative-footer">Page 1 of 5</div>
+                </div>
+                <div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+                        <h3> Function </h3>
+						<p class="flavour-text"> "Hmm... I guess it's an important section..."</p>
+						<p> Terrorist (or defuser, or someone else ?) use only 2 function :<p>
+						<ol>
+                            <li>The function 04, use to read a data word. (and Yes, we will use it)</li>
+                            <li>The function 06, use to write a data word.</li>
+                        </ol>
+						<p> The choice is simple, look at the last number (or letter) of the serial code. <br>
+						...Convert it into an decimal number. (they are all in ASCII)<br>
+						THEN do the modulo 4 of this number(e.g. : 12%4 = 0,&nbsp&nbsp 15%4 = 3)</p>
+						<p class="flavour-text"> "Simple, right ?" </p>
+						<br>
+						<p> After that, multiply by 3, and do the modulo 2 of the result<br>
+						If the result is ... </p>
+						<ol>
+                            <li>&nbsp... 0, use the function 04.</li>
+                            <li>&nbsp... 1, use the function 06.</li>
+                        </ol>
+						<h3>Function 04</h3>
+						<p class="flavour-text"> Read a data, defuse the module, be an hero. BOOM dream archieve.</p>
+						<p> Bomber develop a new kind of protection, you can't defuse the bomb by writing some data word at the right place.<br>
+							You have to send the right frame, read a useless data but it will defuse automatically the module.<br>
+							<br>
+							So, How is compose the data area ? (Read the tab below)</p>	
+						<img src="img/FrameFunction04.png" width="400" />
+						<p class="flavour-text"> You see, It's the last 4 byte to find ! Keep calm and defuse it ! </p>
+                    </div>
+                   <div class="page-footer relative-footer">Page 2 of 5</div>
                 </div>
                 <div class="page page-bg-03">
+                    <div class="page-header">
+                        <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+						<h4>Adress of the word</h4>
+						<p> Firstly, for the adress of the word, multiply the third number by the fourth number.<br>
+							For letter, convert it in decimal with annex ASCII Tab.<br>
+							For number, don't change it like above, take the number write.<br>
+							After that, multiply the result by 100.<br>
+							Then, just take the less significant byte. <br>
+							i.e. : (45BA72C)<SUB>HEX</SUB> -> (A72C)<SUB>HEX</SUB> <br> </p>
+						<h4>Number of word to read</h4>	
+						<p> Hmmm, you should think, "It's useless to say, i will read 210 word", I will respond you, Yes.<br>
+							BUT, That not work like that, Bomber use this function sneaky, so they don't use the real purpose.<br>
+							Please find these 2 last bytes (even if they don't correspond to anything).<br>
+							<br>
+							Take the adress of the slave, multiply by the the number of function and by the data number.<br>
+							Simplify like just right before. And you got it !<br>
+							<br>
+							Send the data and you will be a hero (or not if you failed).<br></p>
+
+						<h3>Function 06</h3>
+						<p class="flavour-text"> Be carefull, the keyboard is stronger than the sword ! </p>
+						<p> You previously determine the slave adress and the function "write". <br>
+							But now you need to search what you need to write ? and where (in him slave memory)? <br>
+							See below, how complete the data area when you want to write something.
+						<img src="img/FrameFunction06.png" width="400" />
+						<p class="flavour-text"> I believe in you ! You got this ! </p>
+                    </div>
+                    <div class="page-footer relative-footer">Page 3 of 5</div>
+                </div>
+				<div class="page page-bg-04">
+                    <div class="page-header">
+                        <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+						<h4>Adress in the register</h4>
+						<p> I hope you review your binary operation become you will use it ! (It's not a joke). <br>
+							First step, take the 5th number (or letter), convert it with ASCII table (in binary this time).<br>
+							*When you got the number, add some 0 before to got the same number in 16 bits.<br>
+							You have to invert this number (NOT Operation), truth table below : </p>
+						<table>
+							<tr>
+								<th>&nbsp&nbsp A &nbsp&nbsp </th>
+								<th>NOT A</th>
+							</tr>
+							<tr>
+								<td> &nbsp&nbsp 1 </td>
+								<td> &nbsp&nbsp 0 </td>
+							</tr>
+							<tr>
+								<td> &nbsp&nbsp 0</td>
+								<td> &nbsp&nbsp 1</td>
+							</tr>
+						</table>
+						<p> You just have to convert the 16 bits binary number into an decimal number.<br>
+							Annnnndddd, you got the adress in the register.</p>
+						
+						<h4>Valeur du mot</h4>
+						<p> You have to change the value of the statue of the module, but you can't adress to the register bit to bit.
+							And we can't just write above things you don't know, it can make the bomb explode right now !
+							It will be OK, like before, follow my instructions and It will be fine.</p>
+						<p> Take the slave adress soustract to it the function number, multiply it to the 5th number or letter (convert with the ASCII table). </p>
+						<p> If you there, you think it's finish, yeah, it's finish ! <br>
+							Now, enter all parameter in the right order, and click on the send button.<br>
+							YOU DID IT MY BOY !</p>
+                    </div>
+                    <div class="page-footer relative-footer">Page 4 of 5</div>
+                </div>
+				<div class="page page-bg-05">
                     <div class="page-header">
                         <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
                         <span class="page-header-section-title">Appendix Name</span>
                     </div>
                     <div class="page-content">
-                        <h2>Appendix M: Additional Notes</h2>
-                        <p>Here other things to keep in mind when making a manual page:</p>
-                        <ul>
-                            <li><strong>There are comments <code>/* ... */</code> in the CSS code in the <code>&lt;style&gt;</code> blocks containing instructions. Follow those instructions before finishing your manual.</strong></li>
-                            <li>Normal and Needy module manual pages are formatted similarly. Widget manual pages are appendices and are formatted as such.</li>
-                            <li>Each manual or appendix page should have a <code>&lt;div class="page-footer...</code> at the bottom of the page, updated accordingly.</li>
-                            <li>Don't be afraid to ask for help if needed!</li>
-                            <li>A few things to reiterate:
-                                <ul>
-                                    <li>Make sure to never forget closing tags (the ones with a <code>/</code> in them).</li>
-                                    <li>For the most part, HTML versions of bolding and underlining is recommended.</li>
-                                    <li>Italics are not used in vanilla manuals besides flavor text and references to appendices, and therefore is not included above. </li>
-                                </ul>
-                            </li>
-                        </ul>
+						<h2>Annex ASCII table</h2>
+						<img src="img/ascii_table.png" width="650" />
+						<p class="flavour-text"> When you need to convert a letter (or an number in some case), you need to find the letter (or number) into the Char column <br>
+												 Bonus : You got Dec/Bin/Hex/Char Convertion</p>
                     </div>
-                    <div class="page-footer relative-footer">Page 1 of 1</div>
+                    <div class="page-footer relative-footer">Page 5 of 5</div>
                 </div>
-
             </div>
         </div>
     </body>
