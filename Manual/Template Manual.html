@@ -34,7 +34,7 @@
                 width: 60%;
             }
         </style>
-        <style>
+		<style>
             /* Remove this <style> block in final manual! */
             code {background-color: rgb(235, 235, 200);}
             code.notcode {background-color: white;}
@@ -132,7 +132,7 @@
 						<h4>Adress of the word</h4>
 						<p> Firstly, for the adress of the word, multiply the third number by the fourth number.<br>
 							For letter, convert it in decimal with annex ASCII Tab.<br>
-							For number, don't change it like above, take the number write.<br>
+							For number, don't change it like above, take the number write (If it's write 5 take 5).<br>
 							After that, multiply the result by 100.<br>
 							Then, just take the less significant byte. <br>
 							i.e. : (45BA72C)<SUB>HEX</SUB> -> (A72C)<SUB>HEX</SUB> <br> </p>
@@ -141,8 +141,8 @@
 							BUT, That not work like that, Bomber use this function sneaky, so they don't use the real purpose.<br>
 							Please find these 2 last bytes (even if they don't correspond to anything).<br>
 							<br>
-							Take the adress of the slave, multiply by the the number of function and by the data number.<br>
-							Simplify like just right before. And you got it !<br>
+							Take the adress of the slave (decimal), multiply by the the number of function (4 or 6) then add the data number (decimal too).<br>
+							Convert into Hexa the result, simplify like just right before. And you got it !<br>
 							<br>
 							Send the data and you will be a hero (or not if you failed).<br></p>
 
@@ -164,8 +164,8 @@
                     <div class="page-content">
 						<h4>Adress in the register</h4>
 						<p> I hope you review your binary operation become you will use it ! (It's not a joke). <br>
-							First step, take the 5th number (or letter), convert it with ASCII table (in binary this time).<br>
-							*When you got the number, add some 0 before to got the same number in 16 bits.<br>
+							First step, take the 4th number (or letter, there are all ASCII), convert it with ASCII table (in binary this time).<br>
+							*When you got the number, complete with some 0 before to convert it into the same number in 16 bits this time. exemple : 101 = 0000 0101 (for 8 bits).<br>
 							You have to invert this number (NOT Operation), truth table below : </p>
 						<table>
 							<tr>
@@ -182,14 +182,13 @@
 							</tr>
 						</table>
 						<p> You just have to convert the 16 bits binary number into an decimal number.<br>
+							Simplify by cut the higher value. i.e. : 265486 -> 5486 <br>
 							Annnnndddd, you got the adress in the register.</p>
 						
-						<h4>Valeur du mot</h4>
-						<p> You have to change the value of the statue of the module, but you can't adress to the register bit to bit.
-							And we can't just write above things you don't know, it can make the bomb explode right now !
-							It will be OK, like before, follow my instructions and It will be fine.</p>
-						<p> Take the slave adress soustract to it the function number, multiply it to the 5th number or letter (convert with the ASCII table). </p>
-						<p> If you there, you think it's finish, yeah, it's finish ! <br>
+						<h4>Value</h4>
+						<p> The last part is the easiest ! For find the value to enter at this adress, take the first serial number (decimal) soustract the number of function.<br>
+							Then multiply this result by the 5th serial Number (or lettre), in decimal for sure. Simplify like above.</p>
+						<p> If you there, you think it's finish, and yes, it's finish ! <br>
 							Now, enter all parameter in the right order, and click on the send button.<br>
 							YOU DID IT MY BOY !</p>
                     </div>

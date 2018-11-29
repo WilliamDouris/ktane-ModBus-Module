@@ -190,6 +190,8 @@ GameObject:
   - component: {fileID: 114526775607706158}
   - component: {fileID: 114777191568478900}
   - component: {fileID: 114723811240768092}
+  - component: {fileID: 114308713135836342}
+  - component: {fileID: 114481027084119230}
   m_Layer: 0
   m_Name: ModBus
   m_TagString: Untagged
@@ -1370,7 +1372,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1107530022580158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0305, y: 0.01, z: -0.0339}
+  m_LocalPosition: {x: -0.0305, y: 0.01, z: -0.0319}
   m_LocalScale: {x: 0.09183501, y: 0.02, z: 0.02}
   m_Children:
   - {fileID: 4884007028370378}
@@ -4444,6 +4446,19 @@ MonoBehaviour:
   AllowSelectionWrapY: 0
   ForceSelectionHighlight: 0
   ForceInteractionHighlight: 0
+--- !u!114 &114308713135836342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157061909999324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -289456416, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Settings: 
+  SettingsPath: 
 --- !u!114 &114316177810937306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4631,6 +4646,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HighlightScale: {x: 0, y: 0, z: 0}
   OutlineAmount: 0
+--- !u!114 &114481027084119230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157061909999324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1f56b9648372a4cb44f839bc0ab310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 114723811240768092}
+  Module: {fileID: 114526775607706158}
+  Info: {fileID: 114777191568478900}
+  modSettings: {fileID: 114308713135836342}
+  btn:
+  - {fileID: 114893728629967328}
+  - {fileID: 114595079431645590}
+  - {fileID: 114804578198913622}
+  - {fileID: 114772170871012340}
+  - {fileID: 114399471543861208}
+  - {fileID: 114127856042835664}
+  - {fileID: 114195379223245400}
+  - {fileID: 114933950410162104}
+  - {fileID: 114032739499051322}
+  - {fileID: 114544194252328620}
+  - {fileID: 114918528562598378}
+  - {fileID: 114160977138498002}
+  - {fileID: 114305483395289872}
+  - {fileID: 114958003546726410}
+  - {fileID: 114403321463301706}
+  - {fileID: 114081083069480872}
+  btnSend: {fileID: 114568164679599182}
+  Screen: {fileID: 102595533859952794}
 --- !u!114 &114500128836345822
 MonoBehaviour:
   m_ObjectHideFlags: 1
