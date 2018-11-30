@@ -108,11 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!102 &26689773 stripped
-TextMesh:
-  m_PrefabParentObject: {fileID: 102190031430245714, guid: 1856acad53fe5b44bae79a37886f7122,
-    type: 2}
-  m_PrefabInternal: {fileID: 1024068172}
 --- !u!1 &457384580
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,28 +268,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114481027084119230, guid: 1856acad53fe5b44bae79a37886f7122,
-        type: 2}
-      propertyPath: Screen
-      value: 
-      objectReference: {fileID: 26689773}
-    - target: {fileID: 102190031430245714, guid: 1856acad53fe5b44bae79a37886f7122,
-        type: 2}
-      propertyPath: m_Text
-      value: __.__.__.__.__.__
-      objectReference: {fileID: 0}
     - target: {fileID: 4050125370698946, guid: 1856acad53fe5b44bae79a37886f7122, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050125370698946, guid: 1856acad53fe5b44bae79a37886f7122, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.002
-      objectReference: {fileID: 0}
-    - target: {fileID: 102190031430245714, guid: 1856acad53fe5b44bae79a37886f7122,
-        type: 2}
-      propertyPath: m_CharacterSize
-      value: 0.7
+      value: 0.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1856acad53fe5b44bae79a37886f7122, type: 2}

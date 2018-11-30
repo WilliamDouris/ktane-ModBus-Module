@@ -60,9 +60,9 @@
 						
 						<br>
 						
-						<p>It's now commonly available means of connecting industrial electronic devices...and can be use to make some bomb.<br>
-						To defuse the module, it's simple, you only need to send the right frame.<br>
-						Don't send anything before finishing writing the frame.</p>
+						<p>It's communly used as means of connecting industrial electronic devices...and can be involved in a making of bomb.<br>
+						To defuse the module, it is simple. You only need to send the right frame.<br>
+						Don't send anything before are done writing the frame.</p>
 						
 						<p class="flavour-text"> You just have to follow the instructions. As simple as cooking a turkey ! </p>
 						
@@ -70,21 +70,20 @@
 						
                         <h2>ModBus Protocol</h2>
 						<p class="flavour-text"> "READ THIS SECTION ! please."</p>
-						<p>Like we said before, you need to follow a strict protocol. We are lucky, bomber never use CRC (Cyclic redundancy check, "Error check").<br>
-						Also, We know, they only use the RTU frame format describe below</p>
+						<p>Like we said before, you need to follow a strict protocol. We are lucky, bomb-maker never use CRC (Cyclic redundancy check, "Error check").<br>
+						Furthermore, we know they only use the RTU frame format described below</p>
 						
                         <img src="img/frameModBus.png" width="500" />
-						<p class="flavour-text"> Like we said before, we don't need calculate the CRC (lucky you). <br>
-						PS : Adress here correspond to the slave adress like the adress of the timer.</p>
+						<p class="flavour-text"> Like we said before, we don't need to calculate the CRC (lucky you). <br> </p>
 						<p> 16 bits word (2 bytes) are send in "Big endian" (Must Signifiant Bit First).<br>
-						i.e. : You have to send (42)<SUB>10</SUB> = (21)<SUB>HEX</SUB>, you need to send "2" then "1".</p>
+						i.e. : You have to sent (42)<SUB>10</SUB> = (21)<SUB>HEX</SUB>, you need to sent "2" then "1".</p>
 						
 						
 						<h3> Adress </h3>
-						<p class="flavour-text"> "Where I have to send the defuse code ?"</p>
-						<p> For fill this, you need to watch the first number (or letter) of the serial code of the bomb.<br>
-						Convert this (they are all in ASCII) in hexademal number (See Annex ASCII Tab), this is the adress (yay !).<p>
-						<p class="flavour-text"> Don't use the decimal numbers ! </p>
+						<p class="flavour-text"> "Where do I have to send the defuse code ?"</p>
+						<p> To fill the adress, you need to watch the first number (or letter) of the serial code on the bomb.<br>
+						Convert it (they are all in ASCII) in hexademal number (See Annex ASCII Tab), this is the adress (yay !).<p>
+						<p class="flavour-text"> Don't use decimal numbers ! </p>
                     </div>
                    <div class="page-footer relative-footer">Page 1 of 5</div>
                 </div>
@@ -96,28 +95,29 @@
                     <div class="page-content">
                         <h3> Function </h3>
 						<p class="flavour-text"> "Hmm... I guess it's an important section..."</p>
-						<p> Terrorist (or defuser, or someone else ?) use only 2 function :<p>
+						<p> Terrorists (or defusers, or someone else ?) use only 2 functions :<p>
 						<ol>
-                            <li>The function 04, use to read a data word. (and Yes, we will use it)</li>
-                            <li>The function 06, use to write a data word.</li>
+                            <li>Function 04, used to read a data word. (and Yes, we'll have to use it)</li>
+                            <li>Function 06, used to write a data word.</li>
                         </ol>
 						<p> The choice is simple, look at the last number (or letter) of the serial code. <br>
-						...Convert it into an decimal number. (they are all in ASCII)<br>
-						THEN do the modulo 4 of this number(e.g. : 12%4 = 0,&nbsp&nbsp 15%4 = 3)</p>
+						...Convert it into a decimal number. (they are all in ASCII)<br>
+						THEN calculate the modulo 4 of this number(e.g. : 12%4 = 0,&nbsp&nbsp 15%4 = 3)</p>
 						<p class="flavour-text"> "Simple, right ?" </p>
 						<br>
-						<p> After that, multiply by 3, and do the modulo 2 of the result<br>
+						<p> After that, multiply by 3, and calculate the modulo 2 of the result<br>
 						If the result is ... </p>
 						<ol>
-                            <li>&nbsp... 0, use the function 04.</li>
-                            <li>&nbsp... 1, use the function 06.</li>
+                            <li>&nbsp... 0, use function 04.</li>
+                            <li>&nbsp... 1, use function 06.</li>
                         </ol>
 						<h3>Function 04</h3>
-						<p class="flavour-text"> Read a data, defuse the module, be an hero. BOOM dream archieve.</p>
-						<p> Bomber develop a new kind of protection, you can't defuse the bomb by writing some data word at the right place.<br>
-							You have to send the right frame, read a useless data but it will defuse automatically the module.<br>
+						<p class="flavour-text"> Read data, defuse the module, be a hero. BOOM dream achieved.</p>
+						<p> Bomb-maker developed a new kind of protection. Instead of using writing function to defuse there module. 
+							you only need to read the right data on the module using fonction 04.<br></p>
+							<p class="flavour-text">Don't care about it. </p>
 							<br>
-							So, How is compose the data area ? (Read the tab below)</p>	
+							<p>So, How does data area is composed ? (Read the tab below)</p>	
 						<img src="img/FrameFunction04.png" width="400" />
 						<p class="flavour-text"> You see, It's the last 4 byte to find ! Keep calm and defuse it ! </p>
                     </div>
@@ -130,16 +130,16 @@
                     </div>
                     <div class="page-content">
 						<h4>Adress of the word</h4>
-						<p> Firstly, for the adress of the word, multiply the third number by the fourth number.<br>
-							For letter, convert it in decimal with annex ASCII Tab.<br>
-							For number, don't change it like above, take the number write (If it's write 5 take 5).<br>
-							After that, multiply the result by 100.<br>
+						<p> First, to find the word adress, multiply the third digit by the fourth digit.<br>
+							Letters, convert them in decimal with annex ASCII Tab.<br>
+							Numbers, don't change them like above, take the number write (If it's write 5 take 5).<br>
+							Next, multiply the result by 100.<br>
 							Then, just take the less significant byte. <br>
 							i.e. : (45BA72C)<SUB>HEX</SUB> -> (A72C)<SUB>HEX</SUB> <br> </p>
 						<h4>Number of word to read</h4>	
-						<p> Hmmm, you should think, "It's useless to say, i will read 210 word", I will respond you, Yes.<br>
-							BUT, That not work like that, Bomber use this function sneaky, so they don't use the real purpose.<br>
-							Please find these 2 last bytes (even if they don't correspond to anything).<br>
+						<p> Hmmm, you should think, "I will read 210 words, that's nonsense ! ", and I will tell you, Yes.<br>
+							BUT, It does not work like that, Bomber use this function sneaky, so they don't use it their real purpose.<br>
+							Please find those 2 last bytes (even if they don't relate to anything).<br>
 							<br>
 							Take the adress of the slave (decimal), multiply by the the number of function (4 or 6) then add the data number (decimal too).<br>
 							Convert into Hexa the result, simplify like just right before. And you got it !<br>
