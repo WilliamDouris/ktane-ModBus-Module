@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>ModBus Module — Keep Talking and Nobody Explodes Module</title>
+        <meta name="viewport" content="initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+        <script src="js/highlighter.js"></script>
+        <style>
+            table {
+                margin: 1em auto;
+            }
+
+            /* Example CSS; Remove what is not used.*/
+            .bold {
+                font-weight: bold;
+            }
+            .underline {
+                text-decoration: underline;
+            }
+            .italics {
+                font-style: italic;
+            }
+
+            img.center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            img.example-image {
+                width: 60%;
+            }
+        </style>
+		<style>
+            /* Remove this <style> block in final manual! */
+            code {background-color: rgb(235, 235, 200);}
+            code.notcode {background-color: white;}
+            li ol {margin: 0;}
+            kbd {background-color: #f5f5f5;border-style: solid;border-width: 1px 2px 2px 1px;padding: 0 1px;}
+        </style>
+    </head>
+    <body>
+        <div id="ManualContent">
+            <div class="section">
+                <div class="page page-bg-02">
+                    <div class="page-header">
+                        <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+                        <img src="img/Component/Module Name.svg" class="diagram">
+                        <h2>On the Subject of ModBus </h2>
+
+						<h3>Summary </h3>
+
+							<ol>
+						   		<li>History</li>
+								<li>Goal</li>
+								<li>ModBus Protocol</li>
+								<li>Slave ID</li>
+								<li>Functions</li>
+								<li>Function 04
+									<ol>
+										<li>Address for function 04</li>
+										<li>Number of word to read for function 04</li>
+									</ol></li>
+								<li>Function 06
+									<ol>
+										<li>Address for function 06</li>
+										<li>Value for function 06</li>
+									</ol></li>
+								<li>Annex</li>
+							</ol>
+
+						<h3>1. History </h3>
+
+							<p>The ModBus is a serial communications protocol originally published by Modicon in 1979, for use with it's PLCs (Programmable logic controllers). </p>
+							<p>It's commonly used as means of connecting industrial electronic devices. Here it has been used to make a bomb.<br>
+
+						<h3>2. Goal </h3>
+						
+							<p>To defuse the module, decode the protocol and send the correct frame.</p>
+							<p>Do not send anything before you are done writing the frame!</p>
+							<p>If everything I've said scared you, just read the part ModBus Protocol carefully and follow the example.
+
+						<h3>3. ModBus Protocol</h3>
+
+							<p>Here is the frame, for advance programmer, you know how to do it.</p>
+
+							<img src="img/frameModBus.png" width="500" class="center"/>
+
+							<center><p class="flavour-text"> Frame ModBus Protocol </p></center>
+
+							<p> PS : 16 bits word (2 bytes) are sent in "Big endian". (Most Significant Byte First).</p>
+
+
+						<h3>4. Slave ID </h3>
+				
+							<p>The slave ID is a 1 byte word representing the address of the slave used.
+							To find the slave ID, you need to :</p>
+
+							<p>Convert the first number (or letter) from ASCII to hexadecimal number (See Annex - ASCII Tab), it's the address (yay!).</p>
+							<p> Do not use decimal numbers! </p>
+							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode slave ID ModBus"</p>
+
+						<h3>5. Functions </h3>
+						
+							<p>The function word is a 1 byte word representing the purpose of your frame.</p>
+							<p>This module use only 2 function :</p>
+							<ul>
+								<li>Function 04, used to read a data word.</li>
+								<li>Function 06, used to write a data word.</li>
+							</ul>
+							<p>In order to find the right function to pick, you need to :</p>
+							<ol>
+								<li>Convert the last number (or letter) from ASCII to decimal number (See Annex - ASCII Tab),</li>
+								<li>Take the modulo 3 of this number (e.g. 12%4 = 0, 15%4 = 3),</li>
+								<li>Multiply by 4,</li>
+								<li>Take the modulo 2 of the result.</li>
+							</ol>
+							<p>This number should be 0 or 1, if not, you havn't done the modulo 2 correctly...</p>
+							<p>If the result is :</p>
+							<ul>
+								<li> 0, use function 06.</li>
+								<li> 1, use function 04.</li>
+							</ul>
+							<p>When it said function 06, you need to write "06" for function word. </p>
+							<p>The next section is divided into 2 parts, the data for the function 04 and for the function 06.
+							Pick the one you find in function part.</p>
+							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function ModBus"</p>
+
+
+						<h3>6. Function 04</h3>
+						
+							<p>Check this section if you find 1 in last part. This section is for function 4 ONLY.</p>
+							<p>For function 4, the data part is divided into 2 parts : address and number of word to read.</p>
+
+							<img src="img/FrameFunction04.png" width="500" class="center"/>
+							<center><p class="flavour-text"> Frame for the function 04 part</p></center>
+
+							<p>We can see in the frame above our subdivision. So in the next following part in function 4, will help you to find the next 4 bytes (2 for address and 2 for number of word to read).</p>
+						
+						<h4>6.1. Address for function 04</h4>
+
+							<p>The address for function 04 is a 2 bytes word representing the first address in the memory which will be read.</p>
+
+							<p>In order to find the address, you need to follow the next list :</p>
+							<ol>
+								<li> Take the 3rd digit of the serial number.</li>
+								<li> If it's a letter, convert it from ASCII to decimal.</li>
+								<li> Repeat step 2 for the 4th number of the serial number.</li>
+								<li> Multiply the two previous number.</li>
+								<li> Convert the number in hexadecimal.</li>
+							</ol>
+							<p> This hexadecimal number is your address !</p>
+
+							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 4 address ModBus"</p>
+						
+						
+						
+						<h4>6.2. Number of word to read for function 04</h4>
+						
+							<p> The number of word to read is a 2 bytes word representing the number of word which the slave will send us. The slave will start from the address contain in the function 04 data part (part just above)</p>
+
+
+							<p> To diffuse this part, check the list below :</p>
+							<ol>
+								<li>Take the 5th digit of serial number</li>
+								<li>Convert it from ASCII to binary</li>
+								<li>Shift 6 times to the left, it's your new 5th digit</li>
+								<li>Take the 6th digit of serial number</li>
+								<li>Convert it to in binary</li>
+								<li>Make a AND Bitwise (Bit to bit) in binary with the new 5th digit and the 6th digit</li>
+							</ol>
+
+							<p> There you are ! </p>
+							<p> Enter the frame with the keyboard and defuse the module ! </p>
+
+							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 4 Number of word to read ModBus"</p>
+
+						<h3>7. Function 06</h3>
+					
+							<p>Check this section if you find 0 in Functions part. This section is for function 6 ONLY.</p>
+							<p>For function 6, the data part is divided into 2 parts : address and number of word to read.</p>
+
+							<img src="img/FrameFunction06.png" width="500" class="center"/>
+							<center><p class="flavour-text"> Frame for the function 06 part</p></center>
+
+							<p>We can see in the frame above our subdivision. So in the next following part in function 4, will help you to find the next 4 bytes (2 for address and 2 for number of word to read).</p>
+
+						<h4>7.1. Address for function 06</h4>
+
+							<p>The address for function 06 is a 2 bytes word representing the address in the memory which will be write.</p>
+
+							<p> To diffuse this part, check the list below :</p>
+							<ol>
+								<li>Take the 4th digit of serial number</li>
+								<li>Convert it from ASCII to binary</li>
+								<li>Convert it from 8 bits binary to 16 bits binary (adding 0 before)</li>
+								<li>Make a NOT bitwise</li>
+								<li>Convert it from decimal to hexadecimal </li>
+							</ol>
+
+							<p> This hexadecimal number is your address !</p>
+
+							<p> Truth table of the NOT : </p>
+							<table>
+							<tr>
+								<th> Input </th>
+								<th> Output (NOT input)</th>
+							</tr>
+							<tr>
+								<td> 1 </td>
+								<td> 0 </td>
+							</tr>
+							<tr>
+								<td> 0</td>
+								<td> 1</td>
+							</tr>
+							</table>
+							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 6 Address ModBus"</p>
+
+						<h4>7.2. Value for function 06</h4>
+
+							<p>The value for function 06 is a 2 bytes word representing the value which which will be write in the memory.</p>
+
+							<ol>
+								<li>Add every single digit together</li>
+								<li>Convert it to hexadecimal</li>
+								<li>Troncate the hexadecimal value to the low value if the value exceed 4 hexadecimal digit.</li>
+							</ol>
+
+							<p> Enter the frame with the keyboard and defuse the module ! </p>
+							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 6 Value ModBus"</p>
+
+						<h3>8. Annex</h3>
+
+						<h4>8.1 Annex - ASCII/Hexadecimal/Binary/Decimal conversion Table</h4>
+
+						<img src="img/ascii_table.png" width="500" class="center"/>
+						<center><p class="flavour-text"> Conversion Table</p></center>
+
+						<h4>8.2 Annex - How to decode slave ID ModBus</h4>
+
+						<h4>8.3 Annex - How to decode function ModBus</h4>
+
+						<h4>8.4 Annex - How to decode function 4 address ModBus</h4>
+
+						<h4>8.5 Annex - How to decode function 4 Number of word to read ModBus</h4>
+
+						<h4>8.6 Annex - How to decode function 6 Address ModBus</h4>
+
+						<h4>8.7 Annex - How to decode function 6 Value ModBus</h4>
+
+						<h4>8.8 Annex - How to send a frame ModBus</h4>
+
+                    </div>
+                    <div class="page-footer relative-footer">Page 1 of 5</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
