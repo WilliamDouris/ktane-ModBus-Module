@@ -72,7 +72,16 @@
 										<li>Address for function 06</li>
 										<li>Value for function 06</li>
 									</ol></li>
-								<li>Annex</li>
+								<li>Annex<ol>
+										<li>Annex - ASCII/Hexadecimal/Binary/Decimal conversion Table</li>
+										<li>Annex - How to decode slave ID ModBus</li>
+										<li>Annex - How to decode function ModBus</li>
+										<li>Annex - How to decode function 4 address ModBus</li>
+										<li>Annex - How to decode function 4 number of word to read ModBus</li>
+										<li>Annex - How to decode function 6 Address ModBus</li>
+										<li>Annex - How to decode function 6 Value ModBus</li>
+										<li>Annex - How to send a frame ModBus</li>
+									</ol></li>
 							</ol>
 
 						<h3>1. History </h3>
@@ -95,7 +104,14 @@
 							<center><p class="flavour-text"> Frame ModBus Protocol </p></center>
 
 							<p> PS : 16 bits word (2 bytes) are sent in "Big endian". (Most Significant Byte First).</p>
-
+					</div>
+					<div class="page-footer relative-footer">Page 1 of 5</div>
+					</div>
+					<div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
 
 						<h3>4. Slave ID </h3>
 				
@@ -117,8 +133,8 @@
 							<p>In order to find the right function to pick, you need to :</p>
 							<ol>
 								<li>Convert the last number (or letter) from ASCII to decimal number (See Annex - ASCII Tab),</li>
-								<li>Take the modulo 3 of this number (e.g. 12%4 = 0, 15%4 = 3),</li>
-								<li>Multiply by 4,</li>
+								<li>Take the rest of the modulo 3 of this number (e.g. 12%3 = 0, 14%3 = 2),</li>
+								<li>Multiply by 7,</li>
 								<li>Take the modulo 2 of the result.</li>
 							</ol>
 							<p>This number should be 0 or 1, if not, you havn't done the modulo 2 correctly...</p>
@@ -132,7 +148,15 @@
 							Pick the one you find in function part.</p>
 							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function ModBus"</p>
 
-
+					</div>
+					<div class="page-footer relative-footer">Page 1 of 5</div>
+					</div>
+					<div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+					
 						<h3>6. Function 04</h3>
 						
 							<p>Check this section if you find 1 in last part. This section is for function 4 ONLY.</p>
@@ -142,7 +166,8 @@
 							<center><p class="flavour-text"> Frame for the function 04 part</p></center>
 
 							<p>We can see in the frame above our subdivision. So in the next following part in function 4, will help you to find the next 4 bytes (2 for address and 2 for number of word to read).</p>
-						
+					
+
 						<h4>6.1. Address for function 04</h4>
 
 							<p>The address for function 04 is a 2 bytes word representing the first address in the memory which will be read.</p>
@@ -151,14 +176,13 @@
 							<ol>
 								<li> Take the 3rd digit of the serial number.</li>
 								<li> If it's a letter, convert it from ASCII to decimal.</li>
-								<li> Repeat step 2 for the 4th number of the serial number.</li>
+								<li> Repeat step 1 and 2 for the 4th number of the serial number.</li>
 								<li> Multiply the two previous number.</li>
 								<li> Convert the number in hexadecimal.</li>
 							</ol>
 							<p> This hexadecimal number is your address !</p>
 
 							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 4 address ModBus"</p>
-						
 						
 						
 						<h4>6.2. Number of word to read for function 04</h4>
@@ -173,14 +197,52 @@
 								<li>Shift 6 times to the left, it's your new 5th digit</li>
 								<li>Take the 6th digit of serial number</li>
 								<li>Convert it to in binary</li>
-								<li>Make a AND Bitwise (Bit to bit) in binary with the new 5th digit and the 6th digit</li>
+								<li>Make a OR Bitwise (Bit to bit) in binary with the new 5th digit and the 6th digit</li>
 							</ol>
-
+							
 							<p> There you are ! </p>
 							<p> Enter the frame with the keyboard and defuse the module ! </p>
-
+							
+							<p> Truth table of the OR : </p>
+							<table>
+							<tr>
+								<th> In 1 </th>
+								<th> In 2 </th>
+								<th> Output</th>
+							</tr>
+							<tr>
+								<td> 0 </td>
+								<td> 0 </td>
+								<td> 0 </td>
+							</tr>
+							<tr>
+								<td> 0 </td>
+								<td> 1 </td>
+								<td> 1 </td>
+							</tr>
+							<tr>
+								<td> 1</td>
+								<td> 0</td>
+								<td> 1</td>
+							</tr>
+							<tr>
+								<td> 1</td>
+								<td> 1</td>
+								<td> 1</td>
+							</tr>
+							</table>
+							
 							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 4 Number of word to read ModBus"</p>
 
+					</div>
+					<div class="page-footer relative-footer">Page 1 of 5</div>
+					</div>
+					<div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">		
+					
 						<h3>7. Function 06</h3>
 					
 							<p>Check this section if you find 0 in Functions part. This section is for function 6 ONLY.</p>
@@ -190,7 +252,7 @@
 							<center><p class="flavour-text"> Frame for the function 06 part</p></center>
 
 							<p>We can see in the frame above our subdivision. So in the next following part in function 4, will help you to find the next 4 bytes (2 for address and 2 for number of word to read).</p>
-
+						
 						<h4>7.1. Address for function 06</h4>
 
 							<p>The address for function 06 is a 2 bytes word representing the address in the memory which will be write.</p>
@@ -210,7 +272,7 @@
 							<table>
 							<tr>
 								<th> Input </th>
-								<th> Output (NOT input)</th>
+								<th> Output</th>
 							</tr>
 							<tr>
 								<td> 1 </td>
@@ -235,7 +297,16 @@
 
 							<p> Enter the frame with the keyboard and defuse the module ! </p>
 							<p class="flavour-text"> "Got some trouble ? Check annex - How to decode function 6 Value ModBus"</p>
-
+					
+					</div>
+					<div class="page-footer relative-footer">Page 1 of 5</div>
+					</div>
+					<div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+					
 						<h3>8. Annex</h3>
 
 						<h4>8.1 Annex - ASCII/Hexadecimal/Binary/Decimal conversion Table</h4>
@@ -244,18 +315,111 @@
 						<center><p class="flavour-text"> Conversion Table</p></center>
 
 						<h4>8.2 Annex - How to decode slave ID ModBus</h4>
-
+						
+						<p> We will take the serial number : Z8E469 for this example </p>
+						<ol>
+							<li> We take the first digit of the serial number : Z</li>
+							<li> Convert it with the conversion table to hexadecimal : 5A</li>
+						</ol>
+						<p> "5A" is the slave ID !</p>
+						
 						<h4>8.3 Annex - How to decode function ModBus</h4>
-
+						
+						<p> We will take the serial number : Z8E469 for this example </p>
+						<ol>
+							<li> We take the last digit of the serial number : 9</li>
+							<li> Convert it with the conversion table to decimal : 57</li>
+							<li> Take modulo %3 : 57%3 -> Rest = 0 <del>Quotient = 19</del> </li>
+							<li> Multiply by 3 : 0x3 = 0</li>
+							<li> Take modulo %2 : 0%2 -> Rest = 0 <del>Quotient = 0</del></li>
+							<li> The result is 0 : It's the function 06</li>
+						</ol>
+						<p> It's the function 06 !</p>
+					
+					</div>
+					<div class="page-footer relative-footer">Page 1 of 5</div>
+					</div>
+					<div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">
+					
 						<h4>8.4 Annex - How to decode function 4 address ModBus</h4>
-
-						<h4>8.5 Annex - How to decode function 4 Number of word to read ModBus</h4>
-
+						
+						<p> We will take the serial number : Z8E467 for this example </p>
+						<ol>
+							<li> Take the 3rd digit of the serial number : E</li>
+							<li> If it's a letter, convert it from ASCII to decimal : 69</li>
+							<li> Repeat step 1 and 2 for the 4th number of the serial number : 4 </li>
+							<li> Multiply the two previous number : 69x4 = 276</li>
+							<li> Convert the number in hexadecimal : Hexa(114)<br>
+							(You can use Windows calculator in programmer mode for the conversion)</li>
+						</ol>
+						<p> Hexa(114) is the address !</p>
+						
+						<h4>8.5 Annex - How to decode function 4 number of word to read ModBus</h4>
+						
+						<p> We will take the serial number : Z8E467 for this example </p>
+						<ol>
+							<li>Take the 5th digit of serial number : 6</li>
+							<li>Convert it from ASCII to binary : 0011 0110</li>
+							<li>Shift 6 times to the left, it's your new 5th digit : 00 1101 1000 0000</li>
+							<li>Take the 6th digit of serial number : 7</li>
+							<li>Convert it to in binary : 0011 0111</li>
+							<li>Make a OR Bitwise (Bit to bit) in binary with the new 5th digit and the 6th digit : 00 1101 1011 0111</li>
+							<li>Convert it from binary to hexadecimal : Hexa(0DB7)</li>
+						</ol>
+						<p> Hexa(0DB7) is the number of word to read !</p>
+						
 						<h4>8.6 Annex - How to decode function 6 Address ModBus</h4>
-
+						
+						<p> We will take the serial number : Z8E469 for this example </p>
+						
+						<ol>
+							<li>Take the 4th digit of serial number : 4</li>
+							<li>Convert it from ASCII to binary : 0011 0100</li>
+							<li>Convert it from 8 bits binary to 16 bits binary (adding 0 before) : 0000 0000 0011 0100</li>
+							<li>Make a NOT bitwise : 1111 1111 1100 1011</li>
+							<li>Convert it from decimal to hexadecimal : Hexa(FFCB)</li>
+						</ol>
+						
+						<p> Hexa(0DB7) is the address !</p>
+						
 						<h4>8.7 Annex - How to decode function 6 Value ModBus</h4>
-
+						
+						<p> We will take the serial number : Z8E469 for this example </p>
+						
+						<ol>
+							<li>Add every single digit together : 8+4+6+9=27</li>
+							<li>Multiply by 13 : 27x13 = 351</li>
+							<li>Convert it to hexadecimal : Hexa(15F)</li>
+							<li>Troncate the hexadecimal value to the low value if the value exceed 4 hexadecimal digit : Hexa(15F)</li>
+						</ol>
+						
+						<p> Hexa(15F) is the value !</p>
+						
+					</div>
+					<div class="page-footer relative-footer">Page 1 of 5</div>
+					</div>
+					<div class="page page-bg-01">
+                    <div class="page-header">
+                        <span class="page-header-section-title">ModBus Module</span>
+                    </div>
+                    <div class="page-content">	
+						
 						<h4>8.8 Annex - How to send a frame ModBus</h4>
+						
+						<p> We will take the serial number : 4B|06|FFCB|15F for this example </p>
+						<ol>
+							<li>Push 4 button</li>
+							<li>Push B button</li>
+							<li>Push 0 button</li>
+							<li>Push 6 button</li>
+							<li>Push F button</li>
+							<li>Continue to push button to write all the frame</li>
+							<li>Push SEND button</li>
+						</ol> 
 
                     </div>
                     <div class="page-footer relative-footer">Page 1 of 5</div>
