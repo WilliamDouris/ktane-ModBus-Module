@@ -189,7 +189,7 @@ public class ModBusScript : MonoBehaviour
         int Digit6 = Info.GetSerialNumber().ElementAt(5);
 
         // Make OR Bitwise with new 5th and 6th
-        int NumberOfWord = Digit5 & Digit6;
+        int NumberOfWord = Digit5 | Digit6;
 
         string str_NumberOfWord = NumberOfWord.ToString("X4");
         correctAns += str_NumberOfWord;
