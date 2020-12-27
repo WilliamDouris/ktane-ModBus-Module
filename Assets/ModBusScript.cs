@@ -32,6 +32,7 @@ public class ModBusScript : MonoBehaviour
 
     private string correctAns = ""; //Answer correct.
     private string yourAns = ""; //Variable answer modify by you
+    private string screen_text = "__.__.__.__.__.__";
 
     // Use this for initialization
     private void Start()
@@ -81,7 +82,7 @@ public class ModBusScript : MonoBehaviour
             // Value function 06
             Find_Correct_Function_06_Value();
         }
-
+        Debug.LogFormat("[ ModBus #{0} - Find_Correct_Answer - Correct Answer is {1}]", _moduleId, correctAns);
     }
 
     // For SlaveID :
@@ -92,8 +93,8 @@ public class ModBusScript : MonoBehaviour
         int Digit1 = Info.GetSerialNumber().ElementAt(0);
 
         // Convert decimal to string hexa
-        string slaveId = Digit1.ToString("X");
-
+        string slaveId = Digit1.ToString("X2");
+            
         correctAns = slaveId;
         Debug.LogFormat("[ ModBus #{0} - Find_Correct_SlaveId - first digit : {1} - slaveId : {2}]", _moduleId, Digit1, slaveId);
     }
@@ -162,7 +163,7 @@ public class ModBusScript : MonoBehaviour
         int Result_Mult = Digit3 * Digit4;
 
         // Convert to hexa
-        string address = Result_Mult.ToString("X");
+        string address = Result_Mult.ToString("X4");
 
         correctAns += address;
         Debug.LogFormat("[ ModBus #{0} - Find_Correct_Function_04_Address - digit 3 : {1} - digit 4 : {2} - address : {3}]", _moduleId, Digit3, Digit4, address);
@@ -190,8 +191,9 @@ public class ModBusScript : MonoBehaviour
         // Make OR Bitwise with new 5th and 6th
         int NumberOfWord = Digit5 & Digit6;
 
-        correctAns += NumberOfWord;
-        Debug.LogFormat("[ ModBus #{0} - Find_Correct_Function_04_Number_of_Word - digit 5 : {1} - digit 6 : {2} - number of word : {3}]", _moduleId, Digit5, Digit6, NumberOfWord);
+        string str_NumberOfWord = NumberOfWord.ToString("X4");
+        correctAns += str_NumberOfWord;
+        Debug.LogFormat("[ ModBus #{0} - Find_Correct_Function_04_Number_of_Word - digit 5 : {1} - digit 6 : {2} - number of word : {3}]", _moduleId, Digit5, Digit6, str_NumberOfWord);
     }
 
     // For Function 06 - address:
@@ -208,7 +210,7 @@ public class ModBusScript : MonoBehaviour
         int Result_Not = Digit4 ^ 0xFFFF;
 
         // Convert to hexa
-        string address = Result_Not.ToString("X");
+        string address = Result_Not.ToString("X4");
 
         correctAns += address;
         Debug.LogFormat("[ ModBus #{0} - Find_Correct_Function_06_Address - digit 4 : {1} - number of word : {2}]", _moduleId, Digit4, address);
@@ -237,17 +239,30 @@ public class ModBusScript : MonoBehaviour
         }
 
         // Convert it to hexadecimal
-        string value = sum.ToString("X");
+        string value = sum.ToString("X4");
         correctAns += value;
 
         Debug.LogFormat("[ ModBus #{0} - Find_Correct_Function_06_Value - value : {1}]", _moduleId, value);
     }
-    /*
+    
     // UpdateScreenText :
     // - Update screen text with yourAns
     private void UpdateScreenText()
     {
-        Screen.text = yourAns;
+        if(yourAns != "")
+        {
+            // Remplace in screen text our value
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(screen_text);
+            //print((yourAns.Length + 1) / 3.0));
+            sb[yourAns.Length + Convert.ToInt32((yourAns.Length - 1) / 2) - 1] = yourAns[yourAns.Length - 1]; //Convert.ToInt32(yourAns.Length/3) is to jump through "."
+            screen_text = sb.ToString();
+        } else {
+            // Reset screen text
+            screen_text = "__.__.__.__.__.__";
+        }
+        
+
+        Screen.text = screen_text;
     }
 
     private void Awake()
@@ -255,7 +270,7 @@ public class ModBusScript : MonoBehaviour
         btnSend.OnInteract += delegate ()
         {
             //When btnSend is clicked
-            SendPress();
+            Send_Clicked();
             return false;
         };
         for (int i = 0; i < 16; i++)
@@ -264,13 +279,13 @@ public class ModBusScript : MonoBehaviour
             btn[i].OnInteract += delegate ()
             {
                 //When 1 btn is clicked (not send), use j parameter.
-                HandlePress(j);
+                Button_Cliked(j);
                 return false;
             };
         }
     }
 
-    void SendPress()
+    void Send_Clicked()
     {
         if (!_lightsOn || _isSolved) return;
 
@@ -283,34 +298,31 @@ public class ModBusScript : MonoBehaviour
         else
         {
             GetComponent<KMBombModule>().HandleStrike();
+            yourAns = "";
+            UpdateScreenText();
         }
     }
 
-    void HandlePress(int num)
+    void Button_Cliked(int num)
     {
         if (!_lightsOn || _isSolved) return;
 
-        yourAns += num;
-        Debug.LogFormat("[ ModBus #{0} - HandlePress - num : {2} ]", _moduleId, num=);
-        UpdateScreenText();
+        Debug.LogFormat("[ ModBus #{0} - HandlePress - num : {1} ]", _moduleId, num);
 
-        if (yourAns.Length % 3 == 1) // If is a '.' digit (for display)
-        {
-            digit++;
-        }
+        string value = num.ToString("X");
 
-        if (digit >= 16) //Test if you are at the last digit
-        {
-            digit = 0;
+        if (yourAns.Length <= 11) {
+            yourAns += value;
+            UpdateScreenText();
+        } else { // If it's complete
+            // pass
         }
-        else
-        {
-            digit++;
-        }
-    }*/
+    }
 }
 
-
+// Need to be test :
+// 5 exemple of path function 04
+// 5 exemple of path function 06
 
 
 
